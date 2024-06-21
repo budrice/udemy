@@ -1,0 +1,65 @@
+:host {
+  display: block;
+  width: 15rem;
+}
+
+.status p:first-of-type {
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.15rem;
+}
+
+:host .status-online p:first-of-type {
+  color: #008000;
+  animation: green-pulse 5s infinite;
+}
+
+:host .status-offline p:first-of-type {
+  animation: red-pulse 0.5s infinite;
+  color: #ff0000;
+  text-transform: uppercase;
+}
+
+.status-unknown p:first-of-type {
+  color: #a0a0a0;
+}
+/* animation: shake 0.1s infinite; */
+p:last-of-type {
+  margin: 0;
+  color: #625e67;
+}
+@keyframes green-pulse {
+  0% {
+    color: green;
+  }
+  50% {
+    color: lime;
+    text-shadow: 0 0 1px black;
+  }
+  100% {
+    color: green;
+  }
+}
+@keyframes red-pulse {
+  0% {
+    color: darkred;
+  }
+  50% {
+    color: red;
+  }
+  100% {
+    color: darkred;
+  }
+}
+@keyframes shake {
+  0% {
+    margin-left: 2px;
+  }
+  50% {
+    margin-left: -2px;
+  }
+  100% {
+    margin-left: 2px;
+  }
+}

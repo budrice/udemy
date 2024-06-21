@@ -1,0 +1,8 @@
+:host {
+  width: 15rem;
+}
+.btn-submit {
+  background-color: green;
+  color: lime;
+  text-shadow: 0 0 1px black;
+}
