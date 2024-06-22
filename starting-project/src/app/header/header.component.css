@@ -39,19 +39,33 @@ nav ul {
 }
 
 nav ul li a {
-  color: #3e3b3e;
+  color: white;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 300;
 }
 
-nav ul li a:hover {
+/* nav ul li a:hover {
   color: #77207a;
+} */
+.btn-gray {
+  background-color: lightgray;
+  color: black !important;
 }
-
 .btn-log {
+  background-color: navy;
+  color: white !important;
+}
+.btn-log:hover {
   background-color: blue;
   color: aqua !important;
-  text-shadow: 0 0 1px black;
+}
+.btn-smiley {
+  background-color: navy;
+  color: white !important;
+}
+.btn-smiley:hover {
+  background-color: blue;
+  color: yellow !important;
 }
 
 @media (min-width: 768px) {

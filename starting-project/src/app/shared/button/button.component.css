@@ -1,34 +1,35 @@
 :host {
+  min-width: 10rem;
   display: inline-block;
-  padding: 0.65rem 1.35rem;
-  border-radius: 0.25rem;
+  padding: 0.25rem 1rem;
+  border-radius: 5px;
   font-size: 1rem;
   text-align: center;
   cursor: pointer;
   background-image: linear-gradient(
     to top,
     transparent,
-    rgba(255, 255, 255, 0.35)
+    rgba(255, 255, 255, 0.55)
   );
   border: 1px outset black;
   overflow: hidden;
 }
 
-:host:hover {
+/* :host:hover {
   background-image: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.35));
   border: 1px inset black;
-}
+} */
 
 .btn-title {
+  vertical-align: 7px;
   font-weight: 100;
   display: inline-block;
-  margin-left: 6px;
 }
 
 .btn-icon {
+  vertical-align: 4px;
   font-size: 1.5em;
   display: inline-block;
-  margin-left: 6px;
 }
 
 :host:hover .btn-title {
@@ -36,7 +37,7 @@
 }
 /* animation: spin 0.2s 1; */
 :host:hover .btn-icon {
-  animation: roll 0.25s 1;
+  animation: roll 0.25s 2;
 }
 
 @keyframes roll {

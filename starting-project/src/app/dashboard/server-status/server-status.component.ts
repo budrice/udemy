@@ -13,10 +13,9 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 export class ServerStatusComponent implements OnInit {
   currentStatus = signal<'online' | 'offline' | 'unknown'>('offline');
   statusArray : ('online' | 'offline' | 'unknown')[] = ['unknown', 'online', 'offline'];
-  // private interval?: ReturnType<typeof setInterval>;
   private destroyRef = inject(DestroyRef);
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.cycleStatus();
   }
 
