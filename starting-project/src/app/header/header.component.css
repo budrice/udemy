@@ -31,7 +31,7 @@ header {
 
 nav ul {
   display: flex;
-  gap: 2rem;
+  gap: 0.25rem;
   list-style: none;
   align-items: center;
   padding: 0;
@@ -39,9 +39,7 @@ nav ul {
 }
 
 nav ul li a {
-  color: white;
   text-decoration: none;
-  font-weight: 300;
 }
 
 /* nav ul li a:hover {

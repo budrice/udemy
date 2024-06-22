@@ -1,17 +1,17 @@
 :host {
-  min-width: 10rem;
   display: inline-block;
-  padding: 0.25rem 1rem;
-  border-radius: 5px;
-  font-size: 1rem;
+  padding: 0.25rem 1rem 0.5rem;
+  border-radius: 7px;
+  font-size: 0.85rem;
   text-align: center;
   cursor: pointer;
   background-image: linear-gradient(
     to top,
     transparent,
-    rgba(255, 255, 255, 0.55)
+    rgba(255, 255, 255, 0.65)
   );
-  border: 1px outset black;
+  outline: 1px solid black;
+  border: 0px solid transparent;
   overflow: hidden;
 }
 
@@ -21,23 +21,24 @@
 } */
 
 .btn-title {
-  vertical-align: 7px;
+  vertical-align: 2px;
   font-weight: 100;
   display: inline-block;
 }
 
 .btn-icon {
-  vertical-align: 4px;
+  font-weight: 100;
+  vertical-align: 0;
   font-size: 1.5em;
   display: inline-block;
 }
 
 :host:hover .btn-title {
-  animation: roll 0.25s 1;
+  animation: roll 0.5s 1;
 }
 /* animation: spin 0.2s 1; */
 :host:hover .btn-icon {
-  animation: roll 0.25s 2;
+  animation: spin 0.5s 1;
 }
 
 @keyframes roll {
@@ -55,20 +56,20 @@
   }
   40% {
     transform: translateY(20px);
+    opacity: 0.5;
   }
   50% {
-    transform: translateY(35px);
-    opacity: 0;
+    transform: translateY(25px);
   }
   55% {
-    transform: translateY(-35px);
+    transform: translateY(-30px);
   }
   60% {
-    transform: translateY(-35px);
+    transform: translateY(-25px);
     opacity: 1;
   }
   70% {
-    transform: translateY(-25px);
+    transform: translateY(-20px);
   }
   80% {
     transform: translateY(-10px);

@@ -1,7 +1,9 @@
 :host {
+  
   width: 15rem;
 }
 .btn-submit {
+  font-weight: 100;
   background-color: darkgreen;
   color: white;
 }
