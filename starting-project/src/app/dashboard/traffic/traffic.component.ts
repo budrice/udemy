@@ -14,31 +14,31 @@ export class TrafficComponent {
   dummyTrafficData = [
     {
       id: 'd1',
-      value: 433,
+      value: 27,
     },
     {
       id: 'd2',
-      value: 260,
+      value: 16,
     },
     {
       id: 'd3',
-      value: 290,
+      value: 29,
     },
     {
       id: 'd4',
-      value: 410,
+      value: 24,
     },
     {
       id: 'd5',
-      value: 397,
+      value: 32,
     },
     {
       id: 'd6',
-      value: 488,
+      value: 28,
     },
     {
       id: 'd47',
-      value: 589,
+      value: 20,
     },
   ];
   maxTraffic = Math.max(...this.dummyTrafficData.map((data) => data.value));

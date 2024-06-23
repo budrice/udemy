@@ -11,19 +11,24 @@
  }
  
  #chart {
+  background-image: linear-gradient(to bottom, lightgray, darkgray);
    height: 10rem;
    display: flex;
    align-items: flex-end;
    gap: 0.5rem;
-   padding: 0 0.5rem;
-   border-bottom: 1px solid #76737a;
+   padding: 1rem 1rem 0;
+   border-top: 1px solid black;
+   border-right: 1px solid black;
+   border-bottom: 3px solid black;
+   border-left: 1px solid black;
  }
  
  #chart div {
    flex: 1;
-   background: linear-gradient(to bottom, #36166f, #ca19a4);
-   border-top-left-radius: 4px;
-   border-top-right-radius: 4px;
+   background: linear-gradient(90deg, rgba(255, 0, 0, 0.35), rgba(255, 255, 255, 0.45), rgba(255, 0, 0, 0.35)), linear-gradient(to bottom, red, black 75%);
+  border-top: 1px solid red;
+  border-left: 1px solid darkred;
+  border-right: 1px solid darkred;
  }
  
  @media (min-width: 768px) {
