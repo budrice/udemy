@@ -29,9 +29,17 @@ main {
   gap: 1.5rem;
   max-width: 85rem;
 }
-
 @media (min-width: 768px) {
   #dashboard {
     flex-direction: row;
   }
+}
+
+.btn-smiley {
+  background-color: rgb(0, 185, 185);
+  color: rgb(0, 0, 85) !important;
+}
+.btn-smiley:hover {
+  background-color: aqua;
+  color: blue !important;
 }

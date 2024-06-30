@@ -2,6 +2,15 @@
 
 <div id="chart">
   @for (dataPoint of dummyTrafficData; track dataPoint.id) {
-  <div [style.height]="(dataPoint.value / maxTraffic) * 100 + '%'"></div>
+  <div
+    [class]="{
+      lime: dataPoint.value > 25,
+      aqua: dataPoint.value <= 25 && dataPoint.value > 20,
+      blue: dataPoint.value <= 20 && dataPoint.value > 15,
+      red: dataPoint.value <= 15
+    }"
+    [style.height]="(dataPoint.value / maxTraffic) * 100 + '%'"
+    [title]="dataPoint.value + ' visited'"
+  >{{ dataPoint.value }}</div>
   }
 </div>

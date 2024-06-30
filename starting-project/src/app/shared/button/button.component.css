@@ -33,12 +33,11 @@
   display: inline-block;
 }
 
-:host:hover .btn-title {
+/* :host:hover .btn-title {
   animation: roll 0.5s 1;
-}
-/* animation: spin 0.2s 1; */
+} */
 :host:hover .btn-icon {
-  animation: spin 0.5s 1;
+  animation: roll 0.5s 1;
 }
 
 @keyframes roll {

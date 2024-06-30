@@ -1,11 +1,11 @@
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" #newTicketForm>
   <app-control label="Title">
-    <input type="text" name="title" id="title">
-  </app-control>
+    <input type="text" name="title" id="title" #input [(ngModel)]="title">
+    </app-control>
   <app-control label="Request">
-    <textarea type="text" name="request" id="request" rows="3"></textarea>
+    <textarea type="text" name="request" id="request" rows="3" #input [(ngModel)]="request"></textarea>
   </app-control>
   <p>
-    <button class="btn-submit" type="submit" appButton>Submit</button>
+    <button class="btn-smiley" type="submit" appButton>Submit</button>
   </p>
 </form>

@@ -22,7 +22,7 @@ export class TrafficComponent {
     },
     {
       id: 'd3',
-      value: 29,
+      value: 31,
     },
     {
       id: 'd4',
@@ -30,7 +30,7 @@ export class TrafficComponent {
     },
     {
       id: 'd5',
-      value: 32,
+      value: 12,
     },
     {
       id: 'd6',

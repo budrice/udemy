@@ -1,1 +1,64 @@
-<p>ticket works!</p>
+<!-- <hr>
+<h5>{{ ticket().title }}</h5>
+<div style="width: 100%; display: inline-block">
+   <div style="float: left;"><p [class]="{
+      open: ticket().status === 'open',
+      closed: ticket().status === 'closed'
+   }">{{ ticket().status }}</p></div>
+   <div style="float: right;"><p>id: {{ ticket().id }}</p></div>
+</div>
+
+<p>{{ ticket().request }}</p> -->
+
+<article>
+   <h3>
+     <div
+       [class]="{
+         'ticket-open': ticket().status === 'open',
+         'ticket-none': ticket().status === 'closed'
+       }"
+     ></div>
+     <button (click)="onToggleDetails()">
+       <span class="text">{{ ticket().title }}</span>
+       <span>
+         @if (detailVisible()) {
+         <svg
+           xmlns="http://www.w3.org/2000/svg"
+           fill="none"
+           viewBox="0 0 24 24"
+           stroke-width="1.5"
+           stroke="currentColor"
+           class="w-6 h-6"
+         >
+           <path
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             d="m19.5 8.25-7.5 7.5-7.5-7.5"
+           />
+         </svg>
+ 
+         } @else {
+         <svg
+           xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24"
+           fill="currentColor"
+           class="w-6 h-6"
+         >
+           <path
+             fill-rule="evenodd"
+             d="M11.47 7.72a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 0 1-1.06-1.06l7.5-7.5Z"
+             clip-rule="evenodd"
+           />
+         </svg>
+         }
+       </span>
+     </button>
+   </h3>
+ 
+   @if (detailVisible()) {
+   <p>{{ ticket().request }}</p>
+ 
+   @if (ticket().status === 'open') {
+   <p><button (click)="closeTicket()">Mark as completed</button></p>
+   } }
+ </article>
