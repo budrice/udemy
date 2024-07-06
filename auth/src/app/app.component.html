@@ -1,7 +1,15 @@
 <main>
   <app-learning-resources />
 
-  <hr />
+  <hr>
 
   <app-auth />
+
+  <hr>
+<!-- <ng-template appAuth="admin">
+  <p>admin logged in</p>
+</ng-template> -->
+<p *appAuth="'admin'" class="protected-content admin">admin logged in</p>
+<p *appAuth="'user'" class="protected-content user">user logged in</p>
+<p *appAuth="'guest'" class="protected-content guest">guest logged in</p>
 </main>
