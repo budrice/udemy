@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { CounterComponent } from './counter/counter.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -9,6 +9,7 @@ import { MessagesComponent } from './messages/messages.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   imports: [CounterComponent, MessagesComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   get debugOutput() {
