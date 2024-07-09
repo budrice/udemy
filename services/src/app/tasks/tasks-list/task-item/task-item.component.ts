@@ -1,17 +1,21 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TitleCasePipe } from '@angular/common';
 
-import { Task, TaskStatus } from '../../task.model';
+import { Task, TASK_STATUS_OPTIONS, TaskStatus } from '../../task.model';
+import { TasksServiceToken } from '../../../../main';
 
 @Component({
   selector: 'app-task-item',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, TitleCasePipe],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.css',
 })
 export class TaskItemComponent {
+  private tasksService = inject(TasksServiceToken);
   task = input.required<Task>();
+  taskStatusOptions = inject(TASK_STATUS_OPTIONS);  
   taskStatus = computed(() => {
     switch (this.task().status) {
       case 'OPEN':
@@ -25,21 +29,23 @@ export class TaskItemComponent {
     }
   });
 
-  onChangeTaskStatus(taskId: string, status: string) {
-    let newStatus: TaskStatus = 'OPEN';
+  onChangeTaskStatus(id: number, newStatus: string) {
+    let status: TaskStatus = 'OPEN';
 
-    switch (status) {
+    switch (newStatus) {
       case 'open':
-        newStatus = 'OPEN';
+        status = 'OPEN';
         break;
       case 'in-progress':
-        newStatus = 'IN_PROGRESS';
+        status = 'IN_PROGRESS';
         break;
       case 'done':
-        newStatus = 'DONE';
+        status = 'DONE';
         break;
       default:
         break;
     }
+
+    this.tasksService.updateTaskStatus(id, status);
   }
 }
