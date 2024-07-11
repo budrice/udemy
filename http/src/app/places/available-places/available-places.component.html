@@ -1,4 +1,13 @@
 <app-places-container title="Available Places">
+
+  @if (loading() && !error()) {
+    <img src="http://localhost:3000/loading.gif" alt="loading" height="100">
+  }
+
+  @if (error()) {
+    <p class="fallback-text">{{ error() }}</p>
+  }
+
   @if (places()) {
   <app-places [places]="places()!" />
   } @else if (places()?.length === 0) {
