@@ -37,19 +37,20 @@ export class PlacesService {
     if (!previousPlaces.some((p) => p.id === place.id)) {
       this.userPlaces.set([...previousPlaces, place]);
       return this.http
-        .put('http://localhost:3000/user-places', { id: place.id })
-        .pipe(
-          catchError((error) => {
-            console.log('ERROR CAUGHT: ', error);
-            this.userPlaces.set(previousPlaces);
-            this.errorService.showError('Failed to store place.');
-            return throwError(() => new Error('Failed to store place.'));
-          })
-        );
+      .put('http://localhost:3000/user-places', { id: place.id })
+      .pipe(
+        catchError((error) => {
+          console.log('ERROR CAUGHT: ', error);
+          this.userPlaces.set(previousPlaces);
+          this.errorService.showError('Failed to store place.');
+          return throwError(() => new Error('Failed to store place.'));
+        })
+      );
     } else {
-      console.log('DUPLICATE FOUND');
-      return of(previousPlaces);
+      return new Observable(observer => observer.error('Duplicate found.'));
     }
+
+    
   }
 
   removeUserPlace(place: Place) {

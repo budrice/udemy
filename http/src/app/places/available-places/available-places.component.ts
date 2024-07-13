@@ -35,7 +35,7 @@ export class AvailablePlacesComponent implements OnInit {
     const sub = this.placesService.addPlaceToUserPlaces(place)
     .subscribe({
       next: result => console.log(result),
-      error: err => console.log(err),
+      error: err => console.log('Error:', err),
       complete: () => console.log('uploaded place')
     });
     this.destroyRef.onDestroy(() => sub.unsubscribe());

@@ -1,23 +1,16 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 
 import { AppComponent } from './app/app.component';
-import { HttpHandlerFn, HttpRequest, provideHttpClient, withInterceptors } from '@angular/common/http';
-
-function loggingInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) {
-
-   // const copyReq = req.clone({
-   //    headers: req.headers.set('X_DEBUG', 'TESTING')
-   // });
-
-   console.log(req.urlWithParams);
-   if (req.method == 'PUT') {
-      console.log(req.body);
-   }
-   return next(req);
-}
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import { LoggingInterceptor } from './app/logging.interceptor';
 
 bootstrapApplication(AppComponent, {
-   providers: [provideHttpClient(
-      withInterceptors([loggingInterceptor])
-   )]
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
+  ],
 }).catch((err) => console.error(err));
