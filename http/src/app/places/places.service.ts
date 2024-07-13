@@ -2,11 +2,13 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { Place } from './place.model';
+import { ErrorService } from '../shared/error.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlacesService {
+  private errorService = inject(ErrorService);
   private userPlaces = signal<Place[]>([]);
   private http = inject(HttpClient);
 
@@ -40,6 +42,7 @@ export class PlacesService {
           catchError((error) => {
             console.log('ERROR CAUGHT: ', error);
             this.userPlaces.set(previousPlaces);
+            this.errorService.showError('Failed to store place.');
             return throwError(() => new Error('Failed to store place.'));
           })
         );
@@ -60,6 +63,7 @@ export class PlacesService {
         catchError((error) => {
           console.log('ERROR CAUGHT: ', error);
           this.userPlaces.set(previousPlaces);
+          this.errorService.showError('Failed to delete place.');
           return throwError(() => new Error('Failed to delete place.'));
         })
       );
@@ -70,6 +74,7 @@ export class PlacesService {
       map((results: { places: Place[] }) => results.places),
       catchError((error: Error) => {
         console.log('ERROR CAUGHT: ', error);
+        this.errorService.showError('Failed to fetch place.');
         return throwError(() => new Error());
       })
     );

@@ -37,6 +37,7 @@ app.get("/user-places", async (req, res) => {
 });
 
 app.put("/user-places", async (req, res) => {
+  // res.status(500).json();
   console.log(req.body.id);
   const fileContent = await fs.readFile("./data/places.json");
   const placesData = JSON.parse(fileContent);
