@@ -3,8 +3,7 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { Place } from '../place.model';
 import { PlacesComponent } from '../places.component';
 import { PlacesContainerComponent } from '../places-container/places-container.component';
-import { HttpClient } from '@angular/common/http';
-import { catchError, map, throwError } from 'rxjs';
+import { PlacesService } from '../places.service';
 
 @Component({
   selector: 'app-available-places',
@@ -14,30 +13,32 @@ import { catchError, map, throwError } from 'rxjs';
   imports: [PlacesComponent, PlacesContainerComponent],
 })
 export class AvailablePlacesComponent implements OnInit {
-  places = signal<Place[] | undefined>(undefined);
+  private placesService = inject(PlacesService);
+  private destroyRef = inject(DestroyRef);
+
+  availablePlaces = signal<Place[] | undefined>(undefined);
   loading = signal(false);
   error = signal('');
-  private http = inject(HttpClient);
-  private destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
     this.loading.set(true);
-    let sub = this.http.get<{ places: Place[] }>('http://localhost:3000/places')
-    .pipe(
-      map(val => val.places),
-      catchError((error, obsevable) => throwError(() => new Error('Something went wrong...')))
-    )
+    const sub = this.placesService.loadAvailablePlaces()
+      .subscribe({
+        next: result => this.availablePlaces.set(result),
+        complete: () => this.loading.set(false),
+        error: err => this.error.set(err.message),
+      });
+    this.destroyRef.onDestroy(() => sub.unsubscribe());
+  }
+
+  onSelectPlace(place: Place) {
+    const sub = this.placesService.addPlaceToUserPlaces(place)
     .subscribe({
-      next: result => this.places.set(result),
-      error: (err: Error) => { 
-        console.log(`ERROR: ${err.message}`);
-        this.error.set(err.message);
-      },
-      complete: () => this.loading.set(false)
+      next: result => console.log(result),
+      error: err => console.log(err),
+      complete: () => console.log('uploaded place')
     });
     this.destroyRef.onDestroy(() => sub.unsubscribe());
-
   }
-  
 
 }

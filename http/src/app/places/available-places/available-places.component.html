@@ -1,16 +1,13 @@
 <app-places-container title="Available Places">
-
   @if (loading() && !error()) {
-    <img src="http://localhost:3000/loading.gif" alt="loading" height="100">
+    <img src="loading.gif" alt="" height="100" class="loader">
   }
-
   @if (error()) {
     <p class="fallback-text">{{ error() }}</p>
   }
-
-  @if (places()) {
-  <app-places [places]="places()!" />
-  } @else if (places()?.length === 0) {
+  @if (availablePlaces() && !error()) {
+  <app-places [places]="availablePlaces()!" (selectPlace)="onSelectPlace($event)" />
+  } @else if (availablePlaces()?.length === 0 && !error()) {
   <p class="fallback-text">Unfortunately, no places could be found.</p>
   }
 </app-places-container>

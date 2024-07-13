@@ -49,3 +49,8 @@ header p {
   color: #9eb5b4;
 }
 
+img.loader {
+  position: relative;
+  left: 50%;
+  margin-left: -50px;
+}

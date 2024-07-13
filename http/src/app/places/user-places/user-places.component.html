@@ -1,3 +1,13 @@
 <app-places-container title="Your Favorite Places">
-  <p>Todo...</p>
+  @if (loading() && !error()) {
+    <img src="loading.gif" alt="" height="100" class="loader">
+  }
+  @if (error()) {
+    <p class="fallback-text">{{ error() }}</p>
+  }
+  @if (userPlaces() && !error()) {
+  <app-places [places]="userPlaces()!" (selectPlace)="onSelectPlace($event)" />
+  } @else if (userPlaces().length === 0 && !error()) {
+  <p class="fallback-text">Unfortunately, no places could be found.</p>
+  }
 </app-places-container>

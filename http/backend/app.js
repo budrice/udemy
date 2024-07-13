@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/places", async (req, res) => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
   // res.status(500).json();
   const fileContent = await fs.readFile("./data/places.json");
 
@@ -37,12 +37,11 @@ app.get("/user-places", async (req, res) => {
 });
 
 app.put("/user-places", async (req, res) => {
-  const placeId = req.body.placeId;
-
+  console.log(req.body.id);
   const fileContent = await fs.readFile("./data/places.json");
   const placesData = JSON.parse(fileContent);
 
-  const place = placesData.find((place) => place.id === placeId);
+  const place = placesData.find((place) => place.id === req.body.id);
 
   const userPlacesFileContent = await fs.readFile("./data/user-places.json");
   const userPlacesData = JSON.parse(userPlacesFileContent);
@@ -51,23 +50,25 @@ app.put("/user-places", async (req, res) => {
 
   if (!userPlacesData.some((p) => p.id === place.id)) {
     updatedUserPlaces = [...userPlacesData, place];
-  }
 
+  
   await fs.writeFile(
     "./data/user-places.json",
     JSON.stringify(updatedUserPlaces)
   );
 
   res.status(200).json({ userPlaces: updatedUserPlaces });
+} else {
+  console.log('DUPLICATE FOUND');
+  res.status(409).json({ message: 'duplicate found.' });
+}
 });
 
 app.delete("/user-places/:id", async (req, res) => {
-  const placeId = req.params.id;
-
   const userPlacesFileContent = await fs.readFile("./data/user-places.json");
   const userPlacesData = JSON.parse(userPlacesFileContent);
 
-  const placeIndex = userPlacesData.findIndex((place) => place.id === placeId);
+  const placeIndex = userPlacesData.findIndex((place) => place.id === req.params.id);
 
   let updatedUserPlaces = userPlacesData;
 
@@ -91,4 +92,4 @@ app.use((req, res, next) => {
   res.status(404).json({ message: "404 - Not Found" });
 });
 
-app.listen(3000, () => console.log('listening on 3000'));
+app.listen(3000, () => console.log("listening on port: 3000"));
